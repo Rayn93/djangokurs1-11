@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block head_title %}Restaurants list{% endblock %}
+
+
+{% block content %}
+
+    <h1>Restaurants list</h1>
+
+    <ul>
+    {% for restaurant in object_list %}
+        <li>{{ restaurant }} </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

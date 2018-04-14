@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block head_title %}Restaurants Detail{% endblock %}
+
+
+{% block content %}
+
+    <h1>Restaurants list</h1>
+
+    <p><strong>Nazwa:</strong> {{ object.name }} </p>
+    <p><strong>Lokalizacja:</strong> {{ object.location }}</p>
+    <p><strong>Kategoria:</strong> {{ object.category }}</p>
+    <p><strong>Ostatia modyfikacja:</strong> {{ object.updated|timesince }} ago</p>
+
+{% endblock %}
