@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head_title %}Home page {% endblock %}
+
+
+{% block content %}
+
+    <h1>Home page</h1>
+
+    {{ variable }}
+
+    {% for item in list %}
+
+        <p>{{ item }}</p>
+
+    {% endfor %}
+
+{% endblock %}
