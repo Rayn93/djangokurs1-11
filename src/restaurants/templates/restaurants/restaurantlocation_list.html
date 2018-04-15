@@ -9,7 +9,7 @@
 
     <ul>
     {% for restaurant in object_list %}
-        <li>{{ restaurant }} </li>
+        <li><a href="{{ restaurant.slug }}"> {{ restaurant }} </a></li>
     {% endfor %}
     </ul>
 

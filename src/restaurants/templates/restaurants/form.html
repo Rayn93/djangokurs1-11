@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head_title %} Dodaj restauracje {% endblock %}
+
+
+{% block content %}
+
+    {% if errors %}
+        {{ errors }}
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+
+{% endblock %}
