@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -20,19 +22,27 @@ from .forms import RestaurantCreateForm, RestaurantLocationCreateView
 #     }
 #     return render(request, template_name, context)
 
-
+@login_required()
 def restaurant_createview(request):
     form = RestaurantLocationCreateView(request.POST or None)
     errors = None
 
     if form.is_valid():
-        form.save()
-        # obj = RestaurantLocation.objects.create(
-        #     name=form.cleaned_data.get('name'),
-        #     location=form.cleaned_data.get('location'),
-        #     category=form.cleaned_data.get('category'),
-        # )
-        return HttpResponseRedirect('/restaurants/')
+
+        if request.user.is_authenticated():
+
+            instance = form.save(commit=True)
+            instance.owner = request.user
+            instance.save()
+            # obj = RestaurantLocation.objects.create(
+            #     name=form.cleaned_data.get('name'),
+            #     location=form.cleaned_data.get('location'),
+            #     category=form.cleaned_data.get('category'),
+            # )
+            return HttpResponseRedirect('/restaurants/')
+        else:
+            return HttpResponseRedirect('/login/')
+
     if form.errors:
         errors = form.errors
 
@@ -70,10 +80,19 @@ class RestaurantsDetailView(DetailView):
     #     return context
 
 
-class RestaurantCreateView(CreateView):
+
+class RestaurantCreateView(LoginRequiredMixin, CreateView):
     form_class = RestaurantLocationCreateView
     template_name = 'restaurants/form.html'
     success_url = '/restaurants/'
+
+    login_url = '/admin/login/'
+    # redirect_field_name = 'redirect_to'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(RestaurantCreateView, self).form_valid(form)
 
 
 # def home(request):
