@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head_title %}Item list{% endblock %}
+
+
+{% block content %}
+
+    <h1>{{ object }}</h1>
+    <h4>Location: {{ object.restaurant.name }}</h4>
+
+    <p></p>
+        <ul>
+            {% for ingrid in object.get_contents %}
+                <li>
+                    {{ ingrid }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <ul>
+            {% for ingrid in object.get_excludes %}
+                <li>
+                    {{ ingrid }}
+                </li>
+            {% endfor %}
+        </ul>
+
+{% endblock %}

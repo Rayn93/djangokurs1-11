@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block head_title %}Item list{% endblock %}
+
+
+{% block content %}
+
+    <h1>Items list</h1>
+
+    <ul>
+    {% for item in object_list %}
+        <li><a href="{{ item.get_absolute_url }}"> {{ item }} </a></li>
+{#        <li><a href="#"> {{ item.name }} </a> <br />#}
+
+{#        <ul>#}
+{#            {% for ingrid in item.get_contents %}#}
+{#                <li>#}
+{#                    {{ ingrid }}#}
+{#                </li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{##}
+{#        <ul>#}
+{#            {% for ingrid in item.get_ %}#}
+{#                <li>#}
+{#                    {{ ingrid }}#}
+{#                </li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+
+
+
+
+        </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
