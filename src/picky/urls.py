@@ -18,8 +18,6 @@ from django.contrib import admin
 
 # from restaurants.views import AboutView, HomeView, ContactView
 from django.views.generic import TemplateView
-from restaurants.views import RestaurantsListView, RestaurantsDetailView, restaurant_createview, RestaurantCreateView
-
 
 
 

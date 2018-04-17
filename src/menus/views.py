@@ -37,9 +37,14 @@ class ItemCreateView(LoginRequiredMixin, CreateView):
         context['title'] = 'Add item'
         return context
 
+    def get_form_kwargs(self):
+        kwargs = super(ItemCreateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
 
-class ItemUpdateView(UpdateView):
+
+class ItemUpdateView(LoginRequiredMixin, UpdateView):
     form_class = ItemForm
     template_name = 'restaurants/form.html'
     login_url = '/admin/login/'
@@ -57,3 +62,7 @@ class ItemUpdateView(UpdateView):
         context['title'] = 'Update item'
         return context
 
+    def get_form_kwargs(self):
+        kwargs = super(ItemUpdateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs

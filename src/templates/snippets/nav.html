@@ -4,8 +4,16 @@
             <li role="presentation" class="active"><a href="{% url "home" %}">Home</a></li>
             <li role="presentation"><a href="{% url "about" %}">About</a></li>
             <li role="presentation"><a href="{% url "contact" %}">Contact</a></li>
-            <li role="presentation"><a href="{% url "restaurants:list" %}">Restauracje</a></li>
-            <li role="presentation"><a href="{% url "menus:list" %}">Itemy</a></li>
+
+
+            {% if request.user.is_authenticated %}
+
+                <li role="presentation"><a href="{% url "restaurants:list" %}">Restauracje</a></li>
+                <li role="presentation"><a href="{% url "menus:list" %}">Itemy</a></li>
+
+            {% endif %}
+
+
         </ul>
     </nav>
 </div>

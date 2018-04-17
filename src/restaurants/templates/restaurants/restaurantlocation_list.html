@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
-{% block head_title %}Restaurants list{% endblock %}
+{% block head_title %}My Restaurants{% endblock %}
 
 
 {% block content %}
 
-    <h1>Restaurants list</h1>
+
+
+
+    <h1>My Restaurants</h1> <strong><a href="{% url "restaurants:create" %}">Dodaj</a</strong>
+
 
     <ul>
     {% for restaurant in object_list %}
